@@ -9,14 +9,16 @@ app.use(express.json());
 app.use("/user",userRouter)
 app.use('/products',productRoute)
 
-const PORT = process.env.PORT||3000;
-connection
-.then(()=>{
-    console.log("connected to db")
-    app.listen(PORT,()=>{
+const PORT = process.env.PORT;
+app.listen(PORT,()=>{
+    connection
+    .then(()=>{
+        console.log("connected to db")
+    })
+    .catch(()=>{
+        console.log("connection failed");
+    })
+    .finally(()=>{
         console.log(`started at ${PORT}`)
     })
-})
-.catch(()=>{
-    console.log("connection failed");
 })
