@@ -10,15 +10,13 @@ app.use("/user",userRouter)
 app.use('/products',productRoute)
 
 const PORT = process.env.PORT||3000;
-app.listen(PORT,()=>{
-    connection
-    .then(()=>{
-        console.log("connected to db")
-    })
-    .catch(()=>{
-        console.log("connection failed");
-    })
-    .finally(()=>{
+connection
+.then(()=>{
+    console.log("connected to db")
+    app.listen(PORT,()=>{
         console.log(`started at ${PORT}`)
     })
+})
+.catch(()=>{
+    console.log("connection failed");
 })
